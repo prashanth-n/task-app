@@ -34,6 +34,10 @@
             />
           </div>
           <button type="submit" class="btn btn-primary" @click="userSignup">Sign up</button>
+          <small class="text-muted left-margin">
+            Alerady have an account?
+            <router-link to="/login">Login here</router-link>
+          </small>
         </form>
       </div>
     </div>
@@ -61,10 +65,12 @@ export default {
         password: this.signupObject.userPassword
       };
       try {
-        await taskAppService.postCall(options)
+        const signupResponse = await taskAppService.postCall(options);
+        localStorage.setItem("user", JSON.stringify(signupResponse.user));
+        localStorage.setItem("token", JSON.stringify(signupResponse.authToken));
         this.$router.push({ path: "/dashboard/tasks" });
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
       // taskAppService.postCall(options).then((res) => {
       //   console.log(res)
@@ -84,5 +90,8 @@ export default {
   border: 3px solid #e8e8e8;
   padding: 1rem;
   margin-top: 1rem;
+}
+.container .left-margin {
+  margin-left: 1rem;
 }
 </style>
