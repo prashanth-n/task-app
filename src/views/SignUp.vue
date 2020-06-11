@@ -53,9 +53,6 @@ export default {
   },
   created() {},
   methods: {
-    beforeDestroy() {
-      this.signupObject.destory();
-    },
     async userSignup() {
       let options = {};
       options.url = "/users/signup";

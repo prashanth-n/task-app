@@ -1,11 +1,11 @@
 <template>
     <div>
-        this is task page
+        profile view
     </div>
 </template>
 <script>
 export default {
-    name:"tasks"
+    
 }
 </script>
 <style scoped>
