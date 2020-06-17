@@ -25,10 +25,30 @@ const authPostCall = ({ url, data }) => {
     }
     return axios.post(ENDPOINT + url, data, config)
 }
+const authPatchCall = ({ url, data }) => {
+    const token = getToken()
+    let config = {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    }
+    return axios.patch(ENDPOINT + url, data, config)
+}
+const authDeleteCall = ({ url }) => {
+    const token = getToken()
+    let config = {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    }
+    return axios.delete(ENDPOINT + url, config)
+}
 export default {
     getCall,
     postCall,
     authPostCall,
     authGetCall,
-    getToken
+    getToken,
+    authPatchCall,
+    authDeleteCall
 }
